@@ -1,0 +1,47 @@
+ <div class="menu_wrapper menu_sticky">
+        <div class="container p_relative h50">
+            <div id="navigation" class="of-drop-down of-main-menu" role="navigation">
+                <ul class="menu">
+                    {% for item in menu %}
+                        <li class="has_sub narrow">
+                        <a href="Index_demo6.html"><i class="menu_icon_wrapper fal fa-home-lg-alt"></i>{{ item.title }}
+                        </a>
+                        <div class="second">
+                            <div class="inner">
+                                <ul>
+                                    {% include "home/partials/sub_recursive.html" with data=item %}
+                                </ul>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{#{% if data.children|length > 0 %}#}
+{#    {% for item in data.children %}#}
+{#        {% if item.children|length > 0 %}#}
+{#            <li class="sub">#}
+{#                <a href="#">#}
+{#                    <i class="q_menu_arrow fal fa-angle-left"></i>#}
+{#                    {{ item.title }}#}
+{#                </a>#}
+{#                <ul>#}
+{#                    {% include "home/partials/recursive.html" with data=item %}#}
+{#                </ul>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <li>#}
+{#                <a href="#">#}
+{#                    {{ item.title }}#}
+{#                </a>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#{% else %}#}
+{#    <li>#}
+{#        <a href="Index_demo6.html"><i class=""></i>{{ data.title }}</a>#}
+{#    </li>#}
+{#{% endif %}#}

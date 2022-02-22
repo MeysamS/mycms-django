@@ -1,0 +1,96 @@
+﻿{% load static %}
+{% load base_tags %}
+<header id="headerId" class="main_header wide_header">
+    <div class="header_container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-5 col-12">
+                    <div class="logo  text-right">
+                        <a href="Index_demo6.html" title="">
+                            <img src="Img/logo.png" alt="" class="mt-3">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-7 col-12">
+                    <div class="head_social_wrap">
+                        <a href="#" class="el_instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="el_telegram-plane" target="_blank">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+
+                    <div class="tel_head">
+                        <i class="fal fa-user-headset"></i>
+                        <span>روابط عمومی 09054708600</span>
+
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="login_wrap text-center">
+                        <span class="login_user_btn"><i class="fal fa-lock-open-alt"></i>ورود به پنل کاربری</span>
+                        <span class="singup_user_btn"><i class="fal fa-user-lock"></i>ثبت نام</span>
+                        <div class="account_action trbox">
+                            <i class="close_modal fal fa-times"></i>
+                            <div class="login_form acc_div">
+                                <form id="of_login" action="" method="post">
+                                    <span class="username">
+                                        <input id="signin_email" name="signin_email" type="text"
+                                               placeholder="نام کاربری یا شماره موبایل" required="">
+                                    </span>
+                                    <span class="password password-input">
+                                        <input id="signin_password" name="signin_password" type="password"
+                                               placeholder="گذرواژه" required="">
+                                    </span>
+                                    <label>
+                                        <input type="checkbox" id="remember-me" name="remember-me">
+                                        <span class="remember_me">مرا به خاطر بسپار</span>
+                                    </label>
+
+                                    <input type="submit" value="ورود به حساب کاربری">
+                                    <a class="lost" href="a_forgetpassword.html">فراموشی گذرواژه؟</a>
+                                </form>
+                            </div>
+                            <div class="register_form acc_div">
+                                <form id="of_register" action="#0" method="post">
+                                    <span class="username">
+                                        <input type="text" name="signup_username" id="signup_username" value=""
+                                               placeholder="نام کاربری" size="20" required="">
+                                        <!--<p class="help-block">لطفا از حروف a-z,A-Z,0-9 استفاده نمایید - حداقل 5 کاراکتر</p>-->
+                                    </span>
+
+                                    <span class="mail">
+                                        <input type="email" name="signup_email" id="signup_email" value=""
+                                               placeholder="پست الکترونیک" required="">
+                                    </span>
+
+                                    <span class="mobile">
+                                        <input type="text" name="signup_mobile" id="signup_mobile" class="ltr_el"
+                                               value="" placeholder="شماره موبایل" size="20" required="">
+                                    </span>
+
+                                    <span class="password password-input">
+                                        <input type="password" name="signup_pass" id="signup_pass" value=""
+                                               placeholder="گذرواژه" required="">
+                                        <span class="show-password-input"></span>
+                                    </span>
+
+                                    <p id="message"></p>
+                                    <input type="hidden" name="action" value="ajax_register">
+                                    <input type="submit" value="عضویت">
+
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% navbars %}
+    </div>
+</header>

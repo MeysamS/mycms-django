@@ -1,0 +1,25 @@
+{% if data.children|length > 0 %}
+    {% for item in data.children %}
+        {% if item.children|length > 0 %}
+            <li class="sub">
+                <a href="#">
+                    <i class="q_menu_arrow fal fa-angle-left"></i>
+                    {{ item.title }}
+                </a>
+                <ul>
+                    {% include "home/partials/sub_recursive.html" with data=item %}
+                </ul>
+            </li>
+        {% else %}
+            <li>
+                <a href="#">
+                    {{ item.title }}
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <li>
+        <a href="Index_demo6.html"><i class=""></i>{{ data.title }}</a>
+    </li>
+{% endif %}

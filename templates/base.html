@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+{% load static %}
+{% load base_tags %}
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1">
+    <link href="{% static 'main/Css/Main.css' %}" rel="stylesheet">
+    <link href="{% static 'main/Css/Menu-demo6.css' %}" rel="stylesheet">
+    <link href="{% static 'main/Css/Style.css' %}" rel="stylesheet">
+    <link href="{% static 'main/Css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/Css/owl.theme.min.css' %}" rel="stylesheet">
+</head>
+<body>
+{% block content %}{% endblock %}
+<script src="{% static 'main/Js/jquery.min.js' %} "></script>
+<script src="{% static 'main/Js/bootstrap.min.js' %} "></script>
+<script src="{% static 'main/Js/my-script.js' %}"></script>
+<script src="{% static 'main/Js/owl.carousel.js' %}"></script>
+<script src="{% static 'main/Js/custom.js' %}"></script>
+</body>
+</html>
