@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+        <section class="container mt-4 mb-2">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb radius15 shadow-sm">
+                        <ul>
+                            <li><a href="#">خانه / </a></li>
+                            <li><a href="#" class="current">مسیر جاری</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mb-4">
+            <div class="row">
+                <div class="col-xl-3 order-xl-0 order-1 mb-4">
+                    <div class="card pcountry cati p-3 mb-3">
+                        <div class="d-flex flex-row justify-content-between bg-light py-2 px-4 my-2 bright radius15">
+                            <h2>دسته بندی ها</h2>
+                            <a href="#">- بیشتر -</a>
+                        </div>
+                        <ul class="list-unstyled">
+                            {% for category in categories %}
+                            <li><a href="#"><img src="{{ category.cover.url }}" class="ml-2" /><span>{{ category.title }} ({{ category.pages.all|length }})</span></a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card thumb-post p-3 mb-3">
+                        <h2 class="bg-light py-2 px-4 mt-2 mb-4 bright radius15">آخرین مطالب</h2>
+                        <ul class="fa12">
+                            {% for last_blog in last_blogs %}
+                                                            <li>
+                                <div class="d-flex flex-row">
+                                    <a href="#"><img src="{{ last_blog.cover.url }}" /></a>
+                                    <div class="m-2">
+                                        <p><a href="#">{{ last_blog.title }}</a></p>
+                                        <span>{{ last_blog.created_at }}</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card pcolor  p-3 mb-3">
+                        <h2 class="bg-light py-2 px-4 my-2 bright radius15">برچسب ها</h2>
+                        <ul>
+                            {% for tag in tags %}
+                            <li><a href="#">{{ tag.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-9  order-xl-1 order-0 mb-4">
+                            <div class="row">
+                                {% for blog in object_list %}
+                                <div class="col-lg-4 col-sm-6 mb-4">
+                                    <div class="card">
+                                        <a href="blog_destails.html"><img class="card-img-top" style="height: 200px" src="{{ blog.cover.url }}" alt="Card image"></a>
+                                        <div class="card-body">
+                                            <h2 class="IRANSans_Bold"><a href="blog_destails.html">{{ blog.title }}</a></h2>
+                                            <span class="text-primary fa12 IRANSans_Medium"><a href="#">{{ blog.category.title }}</a></span>
+                                            <p>
+                                               {{ blog.description }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                    <div class="row mt-3">
+
+                        <div class="col-12 text-center mx-auto">
+                            <ul class="pagination  justify-content-center">
+                                 {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">«</a></li>
+                                {% endif %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                                {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">»</a></li>
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

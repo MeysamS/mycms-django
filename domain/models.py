@@ -1,4 +1,4 @@
-from turtle import title
+# from turtle import title
 from django.utils import timezone
 from django.db import models
 from ckeditor.fields import RichTextField
@@ -14,6 +14,25 @@ PAGE_TYPES_CHOICES = [
 ]
 
 
+class Tag(models.Model):
+    title = models.CharField(max_length=100, unique=True,verbose_name="عنوان")
+
+    def __str__(self):
+        return self.title
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=100, unique=True,verbose_name="عنوان")
+    parent = models.ForeignKey(
+        "self", on_delete=models.CASCADE, related_name="children", blank=True, null=True, verbose_name="والد"
+    )
+    cover = models.ImageField(
+        upload_to="images/pages", verbose_name="عکس کاور"
+    )
+    def __str__(self):
+        return self.title
+
+
 class PageGroup(models.Model):
     title = models.CharField(max_length=100, unique=True,verbose_name="عنوان")
     type = models.PositiveSmallIntegerField(choices=PAGE_TYPES_CHOICES,verbose_name="نوع")
@@ -24,8 +43,10 @@ class PageGroup(models.Model):
 
 class Page(models.Model):
     title = models.CharField(max_length=450,verbose_name="عنوان")
-    description = models.CharField(max_length=1000,verbose_name="توضیحات")
+    description = models.TextField(verbose_name="توضیحات")
     slug = models.SlugField(max_length=200, unique=True,verbose_name="اسلاگ")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='pages',verbose_name="دسته بندی")
+    tags = models.ManyToManyField(Tag,related_name='pages',verbose_name="برچسب")
     content = RichTextField(verbose_name="بدنه صفحه")
     page_group = models.ForeignKey(PageGroup, on_delete=models.CASCADE,verbose_name="گروه صفحه")
     cover = models.ImageField(
