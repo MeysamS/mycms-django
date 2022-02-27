@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import permissions,viewsets
 from domain.serializers import *
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from domain.models import *
 
 def index(request):
@@ -60,8 +60,20 @@ class NavbarViewSet(viewsets.ModelViewSet):
 
 class Blogs(ListView):
     model = Page
+    queryset = Page.objects.all()
     template_name = 'home/blogs.html'
-    paginate_by = 4
+    paginate_by = 5
+    ordering = '-created_at'
+    extra_context = {
+        'categories':Category.objects.all(),
+        'last_blogs':Page.objects.order_by('-created_at')[:5],
+        'tags':Tag.objects.all()[:5],
+    }
+
+
+class BlogDetail(DetailView):
+    model = Page
+    template_name = 'home/detail.html'
     extra_context = {
         'categories':Category.objects.all(),
         'last_blogs':Page.objects.order_by('-created_at')[:5],
