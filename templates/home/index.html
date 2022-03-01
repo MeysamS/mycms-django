@@ -1,4 +1,65 @@
 ﻿{% extends 'master.html' %}
 {% block content %}
+    <!-- start slider -->
+        <section class="container pt-2 p_relative">
+            <div class="row">
+                <div class="col-lg-12 p-0 mb-3">
+                    <div id="owl-mainslider" class="owl-carousel owl-theme text-center">
+                        {% for slider in sliders %}
+                            <div class="item">
+                                <a href="{% url 'domain:blog-detail' slider.page.page_group.get_type_display slider.page.slug %}">
+                                    <img src="{{ slider.image.url }}" class="radius15 img-fluid w-100" />
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- end slider -->
 
+    <!-- start service -->
+    {% if services %}
+            <div class="container p-lg-4 p-3 card my-2 Service-purp">
+            <h3 class="my-3 bt-center IRANSansWeb_Medium text-center">خدمات ما</h3>
+            <div class="row">
+                {% for service in services %}
+                    <div class="col-md-4 p-3">
+                    <div class="p-3 d-flex flex-lg-row flex-md-column text-lg-right text-md-center mb-4 service_style">
+                        <div class="icon ml-lg-3 mb-3">
+                            <i class="fal {{ service.icon }} fa-2x p-3"></i>
+                        </div>
+                        <div>
+                            <h2>{{service.title}}</h2>
+                            <p>{{service.description}} </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <!-- end service -->
+
+    <!-- start last news -->
+        <section class="container">
+            <h3 class="bt-center text-center mb-4">آخرین اخبار ما</h3>
+            <div id="owl-toparticle" class="owl-carousel owl-theme text-right ">
+                {% for last_new in last_news %}
+                <div class="card m-2 radius15">
+                    <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><img class="card-img-top" src="{{ last_new.cover.url }}" alt="Card image"></a>
+                    <div class="card-body">
+                        <div class="d-flex flex-row justify-content-between mb-2">
+                            <span class="fa12"><i class="fal fa-user ml-2 text-info"></i>{{ request.user }}</span>
+                            <span class="fa12"><i class="fal fa-clock ml-2 text-info"></i>{{ last_new.created_at }}</span>
+                        </div>
+                        <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><h2 class="IRANSans_Medium mb-2">تولید سادگی نامفهوم از صنعت چاپ</h2></a>
+                        <p>{{ last_new.description }}</p>
+                        <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}" class="btn btn-link mt-2">ادامه مطلب<i class="fal fa-chevron-left mr-2"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    <!-- end last news -->
 {% endblock %}

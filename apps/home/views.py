@@ -5,52 +5,18 @@ from domain.serializers import *
 from django.views.generic import ListView,DetailView
 from domain.models import *
 
+
 def index(request):
-   results = [
-       {
-           "id":1,
-           "title":"ریاست",
-           "children":[
-               {
-                   "id": 2,
-                   "title":'معاونت',
-                   "children":[]
-               },
-               {
-                   "id": 3,
-                   "title": 'بازرگانی',
-                   "children":[
-                       {
-                           "id": 45,
-                           "title": 'محصولات کشاورزی',
-                            "children":[
-                                {
-                                    "id": 45,
-                                    "title": 'محصولات دامی',
-                                    "children": []
-                                }
-
-                            ]
-                       },
-                       {
-                           "id": 46,
-                           "title": 'منابع طبیعی',
-                           "children":[]
-                       }
-                   ]
-               },
-           ]
-       },
-       {
-           "id": 2,
-           "title": "ریاست دوم",
-           "children": []
-       }
-   ]
-   navbars = NavbarsSerializer(Navbar.objects.filter(parent__isnull=True), many=True).data
-   navbars = list(navbars)
-   return render(request,"home/index.html")
-
+   # navbars = NavbarsSerializer(Navbar.objects.filter(parent__isnull=True), many=True).data
+   # navbars = list(navbars)
+   sliders = Slider.objects.all()
+   services = Services.objects.all()
+   last_news = Page.objects.all()[:10]
+   return render(request,"home/index.html",context={
+       'sliders':sliders,
+       'services':services,
+       'last_news':last_news
+   })
 
 
 class NavbarViewSet(viewsets.ModelViewSet):

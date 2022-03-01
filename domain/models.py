@@ -58,6 +58,10 @@ class Page(models.Model):
     is_active = models.BooleanField(default=True,verbose_name="وضعیت")
 
 
+    def __str__(self):
+        return self.title
+
+
 class Navbar(models.Model):
     title = models.CharField(max_length=100, unique=True,verbose_name="عنوان")
     parent = models.ForeignKey(
@@ -92,6 +96,15 @@ class Slider(models.Model):
     image = models.ImageField(upload_to="images/slider")
     is_external_link = models.BooleanField(default=False)
     link = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Services(models.Model):
+    title = models.CharField(max_length=150, null=True, blank=True)
+    description = models.CharField(max_length=350, null=True, blank=True)
+    icon = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.title

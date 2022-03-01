@@ -24,10 +24,17 @@ class PageGroupAdmin(admin.ModelAdmin):
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
+    search_fields = ('title',)
     list_display = ("title",)
     prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+    autocomplete_fields = ('page',)
+
+
+@admin.register(Services)
+class ServiceAdmin(admin.ModelAdmin):
     list_display = ("title",)
