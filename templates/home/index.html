@@ -42,6 +42,7 @@
     <!-- end service -->
 
     <!-- start last news -->
+    {% if services %}
         <section class="container">
             <h3 class="bt-center text-center mb-4">آخرین اخبار ما</h3>
             <div id="owl-toparticle" class="owl-carousel owl-theme text-right ">
@@ -61,5 +62,134 @@
                 {% endfor %}
             </div>
         </section>
+        {% endif %}
+
     <!-- end last news -->
+
+
+
+    <!-- start category news -->
+
+            <section class="container my-4">
+            <div class="row">
+                <div class="col-xl-6 mb-4">
+                    <div class="card">
+                        <div class="card-header d-flex flex-row justify-content-between">
+                            <h2>اطلاعیه ها</h2>
+                            <a href="#">- بیشتر -</a>
+                        </div>
+                        <div class="card-body tejarat pcu">
+                            <div class="table-responsive">
+                                <table class="table table-striped fa-12">
+                                    <tbody>
+                                    {% for item in last_notification %}
+                                        <tr>
+                                            <th>
+                                                <img src="{{ item.cover.url }}" class="img-fluid ml-1 mb-1" alt="">
+                                                <a href="{% url 'domain:blog-detail' item.page_group.get_type_display item.slug %}">{{ item.title }}</a>
+                                            </th>
+                                            <td>{{ item.created_at }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-6 mb-4">
+                    <div class="card">
+                        <div class="card-header d-flex flex-row justify-content-between">
+                            <h2>مطالب آموزشی</h2>
+                            <a href="#">- بیشتر -</a>
+                        </div>
+                        <div class="card-body latestProduct p-3">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_1.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : تغذیه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_1.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : علوم اقتصاد</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_2.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : بهداشت و سلامت</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_2.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : مشاوره و خدمات</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_1.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : فنی و مهندسی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_1.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : کسب و کار</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_2.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : پزشکی و سلامت</span>
+                                                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex flex-row">
+                                        <img src="Img/cati/img_2.jpg" alt="">
+                                        <div class="mr-2">
+                                            <a href="#">لورم ایپسوم متن ساختگی با سادگی</a>
+                                            <span>دسته بندی : حقوق و وکالت</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- end category news -->
+
 {% endblock %}

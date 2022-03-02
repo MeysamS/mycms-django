@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import *
 
 
+
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ("title",)
@@ -35,6 +38,22 @@ class SliderAdmin(admin.ModelAdmin):
     autocomplete_fields = ('page',)
 
 
+@admin.register(ExternalLink)
+class ExternalLinkAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+
+
 @admin.register(Services)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ("title",)
+
+
+@admin.register(CompanyMember)
+class CompanyMemberAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+

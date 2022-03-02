@@ -12,10 +12,12 @@ def index(request):
    sliders = Slider.objects.all()
    services = Services.objects.all()
    last_news = Page.objects.all()[:10]
+   last_notification = Page.objects.filter(page_group__type=1).all()[:5]
    return render(request,"home/index.html",context={
        'sliders':sliders,
        'services':services,
-       'last_news':last_news
+       'last_news':last_news,
+       'last_notification':last_notification
    })
 
 
