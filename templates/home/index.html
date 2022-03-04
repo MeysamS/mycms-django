@@ -1,4 +1,6 @@
 ﻿{% extends 'master.html' %}
+{% load jalali_tags %}
+
 {% block content %}
     <!-- start slider -->
         <section class="container pt-2 p_relative">
@@ -42,27 +44,25 @@
     <!-- end service -->
 
     <!-- start last news -->
-    {% if services %}
         <section class="container">
             <h3 class="bt-center text-center mb-4">آخرین اخبار ما</h3>
             <div id="owl-toparticle" class="owl-carousel owl-theme text-right ">
                 {% for last_new in last_news %}
-                <div class="card m-2 radius15">
-                    <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><img class="card-img-top" src="{{ last_new.cover.url }}" alt="Card image"></a>
-                    <div class="card-body">
-                        <div class="d-flex flex-row justify-content-between mb-2">
-                            <span class="fa12"><i class="fal fa-user ml-2 text-info"></i>{{ request.user }}</span>
-                            <span class="fa12"><i class="fal fa-clock ml-2 text-info"></i>{{ last_new.created_at }}</span>
+                    <div class="card m-2 radius15">
+                        <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><img class="card-img-top" src="{{ last_new.cover.url }}" alt="Card image"></a>
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-between mb-2">
+                                <span class="fa12"><i class="fal fa-user ml-2 text-info"></i>{{ request.user }}</span>
+                                <span class="fa12"><i class="fal fa-clock ml-2 text-info"></i>{{ last_new.created_at }}</span>
+                            </div>
+                            <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><h2 class="IRANSans_Medium mb-2">{{ last_new.title }}</h2></a>
+                            <p>{{ last_new.description }}</p>
+                            <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}" class="btn btn-link mt-2">ادامه مطلب<i class="fal fa-chevron-left mr-2"></i></a>
                         </div>
-                        <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}"><h2 class="IRANSans_Medium mb-2">تولید سادگی نامفهوم از صنعت چاپ</h2></a>
-                        <p>{{ last_new.description }}</p>
-                        <a href="{% url 'domain:blog-detail' last_new.page_group.get_type_display last_new.slug %}" class="btn btn-link mt-2">ادامه مطلب<i class="fal fa-chevron-left mr-2"></i></a>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </section>
-        {% endif %}
 
     <!-- end last news -->
 
@@ -88,7 +88,7 @@
                                                 <img src="{{ item.cover.url }}" class="img-fluid ml-1 mb-1" alt="">
                                                 <a href="{% url 'domain:blog-detail' item.page_group.get_type_display item.slug %}">{{ item.title }}</a>
                                             </th>
-                                            <td>{{ item.created_at }}</td>
+                                            <td>{{ item.created_at|to_jalali:'%y/%m/%d _ %H:%M:%S'}}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

@@ -8,11 +8,10 @@ from ckeditor.fields import RichTextField
 PAGE_TYPES_CHOICES = [
     (0, "اخبار"),
     (1, "اطلاعیه ها"),
-    (2, "مطالب روزانه"),
-    (2, "آموزشی"),
-    (3, "درباره ما"),
-    (4, "تماس با ما"),
-    (5, "سایر"),
+    (2, "مطالب آموزشی"),
+    (4, "درباره ما"),
+    (5, "تماس با ما"),
+    (6, "سایر"),
 ]
 
 COMPANY_TYPES_CHOICES = [
@@ -123,6 +122,7 @@ class Navbar(models.Model):
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True, blank=True,verbose_name="انتخاب صفحه")
     is_open_new_tab_browser = models.BooleanField(default=False,verbose_name="باز شدن در تب جدید")
     position = models.SmallIntegerField(null=True, blank=True)
+    icon = models.CharField(max_length=100,blank=True,null=True, verbose_name='آیکن')
     created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
 
@@ -159,7 +159,7 @@ class Slider(models.Model):
 class Services(models.Model):
     title = models.CharField(max_length=150, null=True, blank=True)
     description = models.CharField(max_length=350, null=True, blank=True)
-    icon = models.CharField(max_length=100, null=True, blank=True)
+    icon = models.CharField(max_length=100, verbose_name='آیکن', null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
 
@@ -241,3 +241,18 @@ class Comment(models.Model):
 
     class Meta:
         verbose_name_plural = 'دیدگاه'
+
+
+class SocialNetwork(models.Model):
+    name = models.CharField(max_length=150, verbose_name='نام')
+    icon = models.CharField(max_length=100, verbose_name='آیکن')
+    link = models.URLField(verbose_name="لینک")
+
+    created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'شبکه های اجتماعی'

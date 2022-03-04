@@ -6,5 +6,5 @@ class NavbarsSerializer(serializers.ModelSerializer):
     children = RecursiveField(many=True)
     class Meta:
         model = Navbar
-        fields = ('id','title','children')
+        fields = ('id','title','children','icon')
         depth=1
