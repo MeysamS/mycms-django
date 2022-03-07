@@ -74,6 +74,15 @@ body {
     line-height: 2;
 }
 
+tbody,th, tr, td {
+    font-family: IRANSans;
+    margin: 13px!important;
+    padding: 13px!important;
+    min-width: 120px;
+}
+input, select {
+    font-family: IRANSans;
+}
 .fa10 {
     font-size: 10px !important;
 }

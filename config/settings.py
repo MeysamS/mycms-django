@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     # my apps
-    "domain",
+    "domain.apps.DomainConfig",
     "apps.home",
     'rest_framework',
 ]
