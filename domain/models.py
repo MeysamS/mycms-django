@@ -48,6 +48,7 @@ class Tag(models.Model):
         return self.title
     
     class Meta:
+        verbose_name = 'برچسب'
         verbose_name_plural = 'برچسب'
 
 
@@ -66,6 +67,7 @@ class Category(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی'
 
 
@@ -74,12 +76,12 @@ class PageGroup(models.Model):
     type = models.PositiveSmallIntegerField(choices=PAGE_TYPES_CHOICES,verbose_name="نوع")
     created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
-    
-    
+
     def __str__(self):
         return self.title
 
     class Meta:
+        verbose_name = 'گروه بندی صفحه'
         verbose_name_plural = 'گروه بندی صفحه'
         
         
@@ -103,7 +105,8 @@ class Page(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'صفحه'
+        verbose_name = 'صفحه'
+        verbose_name_plural = 'صفحهات'
 
 
 class Navbar(models.Model):
@@ -130,7 +133,8 @@ class Navbar(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'منو'
+        verbose_name = 'منو'
+        verbose_name_plural = 'منوا'
 
     def get_json(self):
         return {
@@ -140,12 +144,12 @@ class Navbar(models.Model):
 
 
 class Slider(models.Model):
-    title = models.CharField(max_length=150, null=True, blank=True)
-    description = models.CharField(max_length=350, null=True, blank=True)
-    page = models.ForeignKey(Page, on_delete=models.SET_NULL, null=True, blank=True)
-    image = models.ImageField(upload_to="images/slider")
-    is_external_link = models.BooleanField(default=False)
-    link = models.URLField(null=True, blank=True)
+    title = models.CharField(max_length=150, null=True, blank=True, verbose_name='عنوان')
+    description = models.CharField(max_length=350, null=True, blank=True, verbose_name='توضیحات')
+    page = models.ForeignKey(Page, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='صفحه')
+    image = models.ImageField(upload_to="images/slider", verbose_name='تصویر')
+    is_external_link = models.BooleanField(default=False, verbose_name='لینک خارجی')
+    link = models.URLField(null=True, blank=True, verbose_name='لینک')
     created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
 
@@ -153,12 +157,13 @@ class Slider(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = 'اسلایدر'
         verbose_name_plural = 'اسلایدر'
 
 
 class Services(models.Model):
-    title = models.CharField(max_length=150, null=True, blank=True)
-    description = models.CharField(max_length=350, null=True, blank=True)
+    title = models.CharField(max_length=150, null=True, blank=True, verbose_name='عنوان')
+    description = models.CharField(max_length=350, null=True, blank=True, verbose_name='توضیحات')
     icon = models.CharField(max_length=100, verbose_name='آیکن', null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ایجاد')
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
@@ -167,6 +172,7 @@ class Services(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = 'خدمات'
         verbose_name_plural = 'خدمات'
 
 
@@ -184,12 +190,13 @@ class CompanyMember(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = 'عضو'
         verbose_name_plural = 'اعضاء'
 
 
 class Company(models.Model):
-    title = models.CharField(max_length=250)
-    description = models.CharField(max_length=500)
+    title = models.CharField(max_length=250, verbose_name='عنوان')
+    description = models.CharField(max_length=500, verbose_name='توضیحات')
     type = models.PositiveSmallIntegerField(choices=COMPANY_TYPES_CHOICES, verbose_name="نوع شرکت")
     date_of_build = models.PositiveSmallIntegerField(verbose_name="تاریخ ساخت", null=True, blank=True)
     register_number = models.PositiveSmallIntegerField(verbose_name="شماره ثبت", null=True, blank=True)
@@ -209,6 +216,7 @@ class Company(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = 'شرکت'
         verbose_name_plural = 'شرکت ها'
 
 
@@ -222,6 +230,7 @@ class ExternalLink(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = 'لینک خارجی'
         verbose_name_plural = 'لینک خارجی'
 
 
@@ -240,6 +249,7 @@ class Comment(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = 'دیدگاه'
         verbose_name_plural = 'دیدگاه'
 
 
@@ -255,4 +265,5 @@ class SocialNetwork(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = 'شبکه های اجتماعی'
         verbose_name_plural = 'شبکه های اجتماعی'
