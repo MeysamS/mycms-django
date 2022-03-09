@@ -4,7 +4,7 @@
                 <ul class="menu">
                     {% for item in menu %}
                         <li class="has_sub narrow">
-                            <a href="Index_demo6.html"><i class="menu_icon_wrapper fal {% if item.icon %}{{ item.icon }}{% endif %}"></i>{{ item.title }}
+                            <a href="{% url 'domain:blog-detail' item.page_group item.page_slug %}"><i class="menu_icon_wrapper fal {% if item.icon %}{{ item.icon }}{% endif %}"></i>{{ item.title }}
                         </a>
                         {% if item.children|length > 0 %}
 
